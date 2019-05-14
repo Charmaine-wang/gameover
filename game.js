@@ -12,7 +12,7 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 10 },
+            gravity: { y: 600 },
             debug: false
         }
     },
@@ -25,28 +25,47 @@ const config = {
 }
 
 function preload(){
-    this.load.crossOrigin = true;
+                    this.load.crossOrigin = true;
 
-    this.load.image("sky", "sky.png",);
-    // this.load.image('ground', 'platform.png');
-    // this.load.image('star', 'star.png');
-    // this.load.image('bomb', 'bomb.png');
-    this.load.spritesheet('dude',
-        'dude.png',
-        { frameWidth: 32, frameHeight: 48 }
-    );
-    // let dude = new Charmaine(this.gameState, 0, 0);
-    // dude.loadImage();
-};
+                    this.load.image(
+                      "sky",
+                      "/assets/sky2.png"
+                    );
+                    this.load.image('ground', '/assets/platform.png');
+                    this.load.image('star', '/assets/star.png');
+                    // this.load.image('bomb', '/assets/bomb.png');
+                    this.load.spritesheet(
+                      "dude",
+                      "/assets/dude.png",
+                      { frameWidth: 32, frameHeight: 48 }
+                    );
+
+                  };
 
 
 function create() {
-    // make player
-    this.add.image(500, 300, "sky");
+    // make map
+    this.add.image(0, 0, "sky").setOrigin(0, 0);
     this.add.image(500, 400, "star");
+
+
+    //make ground
+    platforms = this.physics.add.staticGroup();
+
+    platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+    platforms.create(600, 400, 'ground');
+    platforms.create(50, 250, 'ground');
+    platforms.create(750, 220, 'ground');
+
+    // make player
+    gameState.dude = this.physics.add.sprite(16, 284, 'dude');
+    gameState.dude.setBounce(0.4);
+    gameState.dude.setCollideWorldBounds(true);
+    this.physics.add.collider(gameState.dude, platforms);
+
     //cursor event
     gameState.cursor = this.input.keyboard.createCursorKeys();
-    gameState.dude = this.physics.add.sprite(16, 284, 'dude');
+
 }
 
 function update(){
@@ -67,9 +86,18 @@ function update(){
     if (gameState.cursor.up.isDown) {
         gameState.dude.y -= 5;
     }
-    if (gameState.cursor.down.isDown) {
-        gameState.dude.y += 5;
-    }
+    // if (gameState.cursor.down.isDown) {
+    //     gameState.dude.y += 5;
+    // }
+
+    this.anims.create({
+        key: 'left',
+        frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+        frameRate: 10,
+        repeat: -1
+    });
+
+
 
 }
 
