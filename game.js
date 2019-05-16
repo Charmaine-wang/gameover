@@ -74,16 +74,16 @@ function create() {
 
         // this.bg.setScrollFactor(0);
 
-        gameState.camera.follow(
-          dude,
-          Phaser.Camera.FOLLOW_LOCKON,
-          0.1,
-          0.1
-        );
+        // gameState.camera.follow(
+        //   dude,
+        //   Phaser.Camera.FOLLOW_LOCKON,
+        //   0.1,
+        //   0.1
+        // );
         // gameState.dude.anchor.setTo(0.5, 0.5);                 
         // gameState.camera.bounds = (608, 400);
         // Try to add Camer that follws player
-        // this.cameras.main.startFollow(this.dude);
+        this.cameras.main.startFollow(dude);
         // this.cameras.main.roundPixels = true;
         //cursor event
             
@@ -91,16 +91,16 @@ function create() {
         } 
                 
     }
-                function update(){
-                    //do we need thois?
-                    //if(gameState.cursor.down.isDown){ 
-                        //move right
-                        if(gameState.cursor.right.isDown){
-                            dude.x += 5;
-                        }
-                        
-                        //move left
-                        if (gameState.cursor.left.isDown){
+    function update(){
+        //do we need thois?
+        //if(gameState.cursor.down.isDown){ 
+            //move right
+            if(gameState.cursor.right.isDown){
+                dude.x += 5;
+            }
+            
+            //move left
+            if (gameState.cursor.left.isDown){
         dude.x -= 5;
     }
 
