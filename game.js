@@ -1,7 +1,12 @@
 // import Charmaine from './assets/dude.png';
 // var skyLink = "./assets/sky.png";
 
-const gameState = {}
+const gameState = {
+    speed: 240,
+    ups: 380,
+    width: 4000,
+    height: 600,
+}
 
 
 const config = {
@@ -73,13 +78,11 @@ function create() {
 
 
         // this.bg.setScrollFactor(0);
+        // this.createAnimations();
 
-        // gameState.camera.follow(
-        //   dude,
-        //   Phaser.Camera.FOLLOW_LOCKON,
-        //   0.1,
-        //   0.1
-        // );
+         this.cameras.main.setBounds(0, 0, gameState.width, gameState.height)
+         this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
+         this.cameras.main.startFollow(dude, true, 0.5, 0.5);
         // gameState.dude.anchor.setTo(0.5, 0.5);                 
         // gameState.camera.bounds = (608, 400);
         // Try to add Camer that follws player
@@ -88,6 +91,18 @@ function create() {
         //cursor event
             
             gameState.cursor = this.input.keyboard.createCursorKeys();
+
+
+            //   createAnimations() {
+            //           this.anims.create({
+            //               key: 'run',
+            //               frames: this.anims.generateFrameNumbers('codey', {
+            //                   start: 0,
+            //                   end: 3
+            //               }),
+            //               frameRate: 10,
+            //               repeat: -1
+            //           });
         } 
                 
     }
