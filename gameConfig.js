@@ -23,4 +23,7 @@ const config = {
     
 }
 
+var enemies;
+var cos = 0;
+
 const game = new Phaser.Game(config);
