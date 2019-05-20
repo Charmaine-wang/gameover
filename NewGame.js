@@ -62,12 +62,15 @@ class NewGame extends Phaser.Scene {
       dude.setBounce(0.4);
       dude.setCollideWorldBounds(true);
       this.physics.add.collider(dude, platforms);
+      
+      
 
       dude.body.fixedRotation = true;
 
       this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
       this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
       this.cameras.main.startFollow(dude, true, 0.5, 0.5);
+      // this.cameras.main.startFollow(gameState.scoreText, true, 0.5, 0.5);
 
       gameState.cursor = this.input.keyboard.createCursorKeys();
 
@@ -76,6 +79,9 @@ class NewGame extends Phaser.Scene {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
         this.physics.add.collider(enemies, platforms);
+
+        
+        // this.physics.add.collider(dude, enemies);
 
         for (let y = 0; y < 1; y++) {
           for (let x = 0; x < 1; x++) {
@@ -93,6 +99,24 @@ class NewGame extends Phaser.Scene {
           enemy.setVelocity(40, 0);
           enemy.setBounce(0.4);
           console.log(enemy);
+
+                gameState.scoreText = this.add.text(30, 0, 'Score: ', {
+                  fontSize: '15px',
+                  fill: '#000000'
+                });
+
+                this.physics.add.collider(enemy, dude, function (singelEnemy) {
+
+                
+                   singelEnemy.destroy();
+                  // enemies.killAndHide(singelEnemy)
+                  console.log(singelEnemy)
+                  // Add your code below:
+
+                  // if (dude.setBounce(0.4)){
+                  gameState.score += 10;
+                  gameState.scoreText.setText(`Score: ${gameState.score}`);
+                })
         });
       };
 
@@ -100,7 +124,31 @@ class NewGame extends Phaser.Scene {
       enemiestest(400, 200);
       enemiestest(200, 400);
     }
+
+  //SCORE
+        // gameState.scoreText = this.add.text(30, 0, 'Score: 0', {
+        //   fontSize: '15px',
+        //   fill: '#000000'
+        // });
+        
+        // this.physics.add.collider(dude, enemies, function (singelEnemy) {
+          
+        // singelEnemy.ignoreDestroy = false;
+        // //  singelEnemy.destroy(singelEnsemy);
+        // singelEnemy.setActive(false).setVisible(false)
+        // dude.setActive(true).setVisible(true)
+        // // enemies.killAndHide(singelEnemy)
+        //   console.log(singelEnemy)
+        //   // Add your code below:
+
+        //   // if (dude.setBounce(0.4)){
+        //   gameState.score += 10;
+        //   gameState.scoreText.setText(`Score: ${gameState.score}`);
+        // })
+      // };
   }
+
+
   update() {
     if (gameState.cursor.right.isDown) {
       dude.x += 5;
@@ -126,6 +174,8 @@ class NewGame extends Phaser.Scene {
       repeat: -1
     });
   }
+
+ 
 
   render() {
     game.debug.cameraInfo(game.camera, 32, 32);
