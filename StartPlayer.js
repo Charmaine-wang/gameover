@@ -76,7 +76,7 @@ class StartPlayer extends Phaser.Scene {
 
             this.scene.stop('StartPlayer')
             this.scene.start('NewGame', {
-                startData: "2"
+                startData: 1
             })
 
             })
