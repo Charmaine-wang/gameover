@@ -3,15 +3,20 @@ let platforms;
 let cursors;
 
 class NewGame extends Phaser.Scene {
-  constructor() {
+  constructor(startData) {
     super({
-      key: "NewGame"
+      key: "NewGame",
     });
-  }
+  };
+    init(startData) {
+      console.log(startData)
+    }
+
+
 
   preload() {
     this.load.crossOrigin = true;
-
+   
     this.load.image("sky", "/assets/sky2.png");
     this.load.image("ground", "/assets/platform.png");
     this.load.image("star", "/assets/star.png");
@@ -20,10 +25,21 @@ class NewGame extends Phaser.Scene {
       frameHeight: 48
     });
     // this.load.image('bomb', '/assets/bomb.png');
-    this.load.spritesheet("dude", "/assets/erik3.png", {
+    this.load.spritesheet("dude", {
+          if (startData = 1){
+            return "./assets/erik4.png"
+          }
+            return "./assets/charre.png"
+        }, {
       frameWidth: 32,
       frameHeight: 48
     });
+
+    this.load.spritesheet("erik", "/assets/erik3.png", {
+      frameWidth: 32,
+      frameHeight: 48
+    });
+
   }
 
   create() {
@@ -61,6 +77,8 @@ class NewGame extends Phaser.Scene {
                      platforms.create(3750, 220, "ground");
 
                      // make player
+
+                     //if frame key = charre eller erik?
                      dude = this.physics.add.sprite(
                        16,
                        284,

@@ -9,7 +9,7 @@ const config = {
     type: Phaser.AUTO,
     width: 1000,
     height: 600,
-    backgroundColor: "#5f2a55",
+    backgroundColor: "#f57283",
     physics: {
         default: 'arcade',
         arcade: {
@@ -19,7 +19,8 @@ const config = {
             debug: false
         }
     },
-    scene: [NewGame]
+    scene: [StartPlayer, NewGame],
+        // type: [Erik, Charmaine]
     
 }
 
