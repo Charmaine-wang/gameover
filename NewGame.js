@@ -19,7 +19,7 @@ class NewGame extends Phaser.Scene {
       frameHeight: 48
     });
     // this.load.image('bomb', '/assets/bomb.png');
-    this.load.spritesheet("dude", "/assets/dude2.png", {
+    this.load.spritesheet("dude", "/assets/charre.png", {
       frameWidth: 32,
       frameHeight: 48
     });
