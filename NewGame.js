@@ -5,6 +5,7 @@ let map;
 let tileset;
 let enemies;
 let enemies2;
+let enemieCount = 0;
 let coins;
 let killPlayer = false;
 
@@ -201,6 +202,7 @@ class NewGame extends Phaser.Scene {
 
       // create enemies
       const addEnemies = (positionX, positionY, en, scale) => {
+        enemieCount++;
         enemies = this.physics.add.group();
         enemies.enableBody = true;
         this.physics.add.collider(enemies, aboveLayer, function(a, b) {
@@ -250,6 +252,7 @@ class NewGame extends Phaser.Scene {
               killPlayer = true;
             } else {
               singelEnemy.destroy();
+              enemieCount--;
             }
 
             gameState.score += 10;
@@ -285,12 +288,12 @@ class NewGame extends Phaser.Scene {
       };
 
       addEnemies(736, 288, "enemies2", 1.5);
-      addEnemies(400, 200, "enemies2", 1.5);
-      addEnemies(920, 248, "enemies");
-      addEnemies(2000, 248, "enemies");
+      // addEnemies(400, 200, "enemies2", 1.5);
+      // addEnemies(920, 248, "enemies");
+      // addEnemies(2000, 248, "enemies");
 
-      addCoins(736, 288, "coins");
-      addCoins(400, 200, "coins");
+      addCoins(688, 288, "coins");
+      addCoins(816, 200, "coins");
       addCoins(920, 248, "coins");
       addCoins(2000, 248, "coins");
     }
@@ -311,11 +314,17 @@ class NewGame extends Phaser.Scene {
 
       dude.anims.play("turn");
     }
-
     if (cursors.up.isDown && dude.body.blocked.down) {
       dude.setVelocityY(-330);
     }
 
+    console.log(enemieCount)
+    if(enemieCount === 0 ) {
+      console.log("text");
+      this.scene.stop("NewGame");
+      this.scene.start('StartPlayer')
+      
+  }
     if(killPlayer) {
     killPlayer = false;
     this.scene.restart();
