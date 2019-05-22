@@ -29,12 +29,6 @@ class StartPlayer extends Phaser.Scene {
         fontSize: '40px'
     })
 
-<<<<<<< HEAD
-=======
-    
-
-
->>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
     var playerErik = this.add.sprite(
 
         370,
