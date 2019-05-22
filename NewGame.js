@@ -23,7 +23,7 @@ class NewGame extends Phaser.Scene {
     }
     console.log(this.data)
     this.load.crossOrigin = true;
-    this.load.spritesheet("enemies", "./assets/dude.png", {
+    this.load.spritesheet("enemies", "./assets/bouncer.png", {
       frameWidth: 32,
       frameHeight: 48
     });
