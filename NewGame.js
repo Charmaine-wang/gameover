@@ -15,14 +15,10 @@ class NewGame extends Phaser.Scene {
     
   }
   init(data) { 
-    this.data = data;
+    this.props = data;
   }
 
   preload() {
-    if (this.data){
-      
-    }
-    console.log(this.data)
     this.load.crossOrigin = true;
 
     this.load.spritesheet("enemies", "./assets/bouncer.png", {
@@ -30,13 +26,12 @@ class NewGame extends Phaser.Scene {
       frameHeight: 48
     });
 
-    this.load.spritesheet("enemies2", "./assets/erik3.png", {
-
+    this.load.spritesheet("enemies2", "./assets/bouncer.png", {
       frameWidth: 32,
       frameHeight: 48
     });
 
-    if(this.data.startData === 1){
+    if(this.props.startData === 1){
       this.load.spritesheet("dude", "/assets/erik5.png", {
         frameWidth: 32,
         frameHeight: 48
@@ -75,6 +70,7 @@ class NewGame extends Phaser.Scene {
       dude.setCollideWorldBounds(true);
       this.physics.add.collider(dude, aboveLayer);
 
+      //player movements
       this.anims.create({
         key: "left",
         frames: this.anims.generateFrameNumbers("dude", {
@@ -101,6 +97,7 @@ class NewGame extends Phaser.Scene {
         repeat: -1
       });
 
+
       //coins movement
 
     this.anims.create({
@@ -112,6 +109,61 @@ class NewGame extends Phaser.Scene {
       frameRate: 10,
       repeat: -1
     });
+
+      //enemy one movements
+      this.anims.create({
+        key: "enemies-left",
+        frames: this.anims.generateFrameNumbers("enemies", {
+          start: 0,
+          end: 3
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+
+      this.anims.create({
+        key: "enemies-turn",
+        frames: [{ key: "enemies", frame: 4 }],
+        frameRate: 20
+      });
+
+      this.anims.create({
+        key: "enemies-right",
+        frames: this.anims.generateFrameNumbers("enemies", {
+          start: 5,
+          end: 8
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+
+      //enemy two movements
+      this.anims.create({
+        key: "enemies2-left",
+        frames: this.anims.generateFrameNumbers("enemies2", {
+          start: 0,
+          end: 3
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+
+      this.anims.create({
+        key: "enemies2-turn",
+        frames: [{ key: "enemies2", frame: 4 }],
+        frameRate: 20
+      });
+
+      this.anims.create({
+        key: "enemies2-right",
+        frames: this.anims.generateFrameNumbers("enemies2", {
+          start: 5,
+          end: 8
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+
 
       dude.body.fixedRotation = true;
       this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
@@ -157,8 +209,20 @@ class NewGame extends Phaser.Scene {
       const addEnemies = (positionX, positionY, en) => {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
+        this.physics.add.collider(enemies, aboveLayer, function(a, b) {
+          // enemies.children.entries.map(enemy => {
+          //   enemy.body.setCollideWorldBounds(true);
+          //   console.log(enemy.body.touching.left);
+          // })
+            
 
-        this.physics.add.collider(enemies, aboveLayer);
+            if (a.body.blocked.left) {
+              a.anims.play(`${en}-right`)
+            }
+            if (a.body.blocked.right) {
+              a.anims.play(`${en}-left`);
+            }
+        });
 
 
         for (let y = 0; y < 1; y++) {
@@ -176,6 +240,7 @@ class NewGame extends Phaser.Scene {
 
           enemy.setVelocity(40, 1);
           enemy.setBounce(1, 0.2);
+          enemy.body.setCollideWorldBounds(true);
 
           gameState.scoreText = this.add.text(30, 0, "Score: ", {
             fontSize: "15px",
@@ -183,7 +248,8 @@ class NewGame extends Phaser.Scene {
           });
           gameState.scoreText.setScrollFactor(0);
 
-          this.physics.add.collider(enemy, dude, function(singelEnemy) {
+
+          this.physics.add.collider(enemy, dude, function (singelEnemy) {
             singelEnemy.destroy();
             gameState.score += 10;
             gameState.scoreText.setText(`Score: ${gameState.score}`);
@@ -215,12 +281,10 @@ class NewGame extends Phaser.Scene {
             callback: this.launchTaiFighter
           })
 
-
-
         });
       };
 
-      addEnemies(736, 288, "enemies");
+      addEnemies(736, 288, "enemies2");
       addEnemies(400, 200, "enemies2");
       addEnemies(920, 248, "enemies");
       addEnemies(2000, 248, "enemies");
@@ -231,7 +295,6 @@ class NewGame extends Phaser.Scene {
       addCoins(920, 248, "coins");
       addCoins(2000, 248, "coins");
     }
-
   }
 
   update() {
@@ -248,14 +311,9 @@ class NewGame extends Phaser.Scene {
 
       dude.anims.play("turn");
     }
-
+    
     if (cursors.up.isDown && dude.body.blocked.down) {
       dude.setVelocityY(-330);
     }
-  }
-
-  render() {
-    game.debug.cameraInfo(game.camera, 36, 36);
-    game.debug.spriteCoords(dude, 36, 500);
   }
 }

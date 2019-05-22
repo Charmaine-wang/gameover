@@ -29,9 +29,6 @@ class StartPlayer extends Phaser.Scene {
         fontSize: '40px'
     })
 
-    
-
-
     var playerErik = this.add.sprite(
 
         370,
@@ -51,7 +48,6 @@ class StartPlayer extends Phaser.Scene {
        });
     playerErik.setScale(4);
     playerErik.anims.play("front")
- 
 
     var playerCharre = this.add.sprite(
          580,
@@ -81,6 +77,7 @@ class StartPlayer extends Phaser.Scene {
             startData: 2
         })
      })
+    
     playerErik.setInteractive().on('pointerdown', () => {
         this.scene.stop('StartPlayer')
         this.scene.start('NewGame', {
