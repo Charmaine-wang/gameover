@@ -2,19 +2,19 @@ const gameState = {
     score: 0,
     speed: 240,
     width: 4125,
-    height: 600,
+    height: 640,
 }
 
 const config = {
     type: Phaser.AUTO,
     width: 1000,
-    height: 600,
+    height: 640,
     backgroundColor: "#f57283",
     physics: {
         default: 'arcade',
         arcade: {
             gravity: {
-                y: 600
+                y: 640
             },
             debug: false
         }
@@ -24,7 +24,6 @@ const config = {
     
 }
 
-var enemies;
 var cos = 0;
 
 const game = new Phaser.Game(config);

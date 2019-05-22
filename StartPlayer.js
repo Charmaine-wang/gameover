@@ -31,7 +31,7 @@ class StartPlayer extends Phaser.Scene {
 
     
 
-    playerErik = this.add.sprite(
+    var playerErik = this.add.sprite(
         370,
         284,
         "erik",
@@ -49,10 +49,9 @@ class StartPlayer extends Phaser.Scene {
        });
     playerErik.setScale(4);
     playerErik.anims.play("front")
-
  
 
-     playerCharre = this.add.sprite(
+    var playerCharre = this.add.sprite(
          580,
          275,
          "charre",
@@ -68,20 +67,26 @@ class StartPlayer extends Phaser.Scene {
                 frame: 4
             }]
         });
-     playerCharre.setScale(5)
+    playerCharre.setScale(5)
     playerCharre.anims.play("front2")
 
+    
 
-        this.input.on('pointerdown', () => {
-
-            this.scene.stop('StartPlayer')
-            this.scene.start('NewGame', {
-                startData: 1
-            })
-
-            })
+    playerCharre.setInteractive().on('pointerdown', () => {
+        this.scene.stop('StartPlayer')
+        this.scene.start('NewGame', {
+            startData: 2
+        })
+     })
+    playerErik.setInteractive().on('pointerdown', () => {
+        this.scene.stop('StartPlayer')
+        this.scene.start('NewGame', {
+            startData: 1
+        })
+     })
      
     }
+
 }
 
 

@@ -3,6 +3,8 @@ let platforms;
 let cursors;
 let map;
 let tileset;
+let enemies;
+let enemies2;
 
 class NewGame extends Phaser.Scene {
   constructor() {
@@ -17,32 +19,33 @@ class NewGame extends Phaser.Scene {
 
   preload() {
     if (this.data){
-      console.log(this.data)
-      this.load.crossOrigin = true;
-      this.load.spritesheet("enemies", "./assets/dude.png", {
-        frameWidth: 32,
-        frameHeight: 48
-      });
-      this.load.spritesheet("enemies2", "./assets/erik3.png", {
-        frameWidth: 32,
-        frameHeight: 48
-      });
-
-      if (this.data.startData === 1) {
-        this.load.spritesheet("dude", "/assets/erik5.png", {
-          frameWidth: 32,
-          frameHeight: 48
-        });
-      } else {
-        this.load.spritesheet("dude", "/assets/charre.png", {
-          frameWidth: 32,
-          frameHeight: 48
-        });
+      
     }
-  }
+    console.log(this.data)
+    this.load.crossOrigin = true;
+    this.load.spritesheet("enemies", "./assets/dude.png", {
+      frameWidth: 32,
+      frameHeight: 48
+    });
+    this.load.spritesheet("enemies2", "./assets/erik3.png", {
+      frameWidth: 32,
+      frameHeight: 48
+    });
 
-    this.load.image("sheet", "./assets/sheet.png");
-    this.load.tilemapTiledJSON("test3", "/assets/test3.json");
+    if(this.data.startData === 1){
+      this.load.spritesheet("dude", "/assets/erik5.png", {
+        frameWidth: 32,
+        frameHeight: 48
+      });
+    }else{
+      this.load.spritesheet("dude", "/assets/charre.png", {
+        frameWidth: 32,
+        frameHeight: 48
+      });
+    }
+
+    this.load.image("sheet", "./assets/sheet2.png");
+    this.load.tilemapTiledJSON("test3", "/assets/test4.json");
   }
 
   create(startData) {
@@ -57,13 +60,6 @@ class NewGame extends Phaser.Scene {
       aboveLayer.setCollisionByProperty({
         collide: true
       });
-
-      // make player
-      // if ((startData = 1)) {
-      //   dude = this.physics.add.sprite(16, 284, "erik");
-      // } else {
-      //   dude = this.physics.add.sprite(16, 284, "charre");
-      // }
       dude = this.physics.add.sprite(16, 284, "dude");
       dude.setBounce(0.4);
       dude.setCollideWorldBounds(true);
@@ -133,6 +129,34 @@ class NewGame extends Phaser.Scene {
             gameState.score += 10;
             gameState.scoreText.setText(`Score: ${gameState.score}`);
           });
+
+          this.anims.create({
+            key: 'taiLeft',
+            frames: this.anims.generateFrameNumbers(en, { start: 3, end: 0 }),
+            frameRate: 10,
+            repeat: 0
+          })
+          //center
+          this.anims.create({
+            key: 'taiCenter',
+            frames: this.anims.generateFrameNumbers(en, { start: 0, end: 4 }),
+            frameRate: 10,
+            repeat: 1
+          })
+          //right
+          this.anims.create({
+            key: 'taiRight',
+            frames: this.anims.generateFrameNumbers(en, { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: 0
+          })
+          this.time.addEvent({
+            delay: 1000,
+            loop: true,
+            callback: this.launchTaiFighter
+          })﻿
+
+
         });
       };
 
