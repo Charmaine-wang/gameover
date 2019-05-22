@@ -27,7 +27,9 @@ class NewGame extends Phaser.Scene {
       frameWidth: 32,
       frameHeight: 48
     });
+
     this.load.spritesheet("enemies2", "./assets/erik3.png", {
+
       frameWidth: 32,
       frameHeight: 48
     });
@@ -166,27 +168,6 @@ class NewGame extends Phaser.Scene {
       addEnemies(2000, 248, "enemies");
     }
 
-    //SCORE
-    // gameState.scoreText = this.add.text(30, 0, 'Score: 0', {
-    //   fontSize: '15px',
-    //   fill: '#000000'
-    // });
-
-    // this.physics.add.collider(dude, enemies, function (singelEnemy) {
-
-    // singelEnemy.ignoreDestroy = false;
-    // //  singelEnemy.destroy(singelEnsemy);
-    // singelEnemy.setActive(false).setVisible(false)
-    // dude.setActive(true).setVisible(true)
-    // // enemies.killAndHide(singelEnemy)
-    //   console.log(singelEnemy)
-    //   // Add your code below:
-
-    //   // if (dude.setBounce(0.4)){
-    //   gameState.score += 10;
-    //   gameState.scoreText.setText(`Score: ${gameState.score}`);
-    // })
-    // };
   }
 
   update() {
