@@ -130,6 +130,7 @@ class NewGame extends Phaser.Scene {
             fontSize: "15px",
             fill: "#000000"
           });
+          gameState.scoreText.setScrollFactor(0);
 
           this.physics.add.collider(enemy, dude, function(singelEnemy) {
             singelEnemy.destroy();
