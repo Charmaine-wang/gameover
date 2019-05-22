@@ -31,7 +31,9 @@ class StartPlayer extends Phaser.Scene {
 
     
 
+
     var playerErik = this.add.sprite(
+
         370,
         284,
         "erik",
@@ -67,6 +69,7 @@ class StartPlayer extends Phaser.Scene {
                 frame: 4
             }]
         });
+
     playerCharre.setScale(5)
     playerCharre.anims.play("front2")
 
@@ -86,6 +89,7 @@ class StartPlayer extends Phaser.Scene {
      })
      
     }
+
 
 }
 

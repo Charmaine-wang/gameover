@@ -23,6 +23,7 @@ class NewGame extends Phaser.Scene {
     }
     console.log(this.data)
     this.load.crossOrigin = true;
+
     this.load.spritesheet("enemies", "./assets/bouncer.png", {
       frameWidth: 32,
       frameHeight: 48
@@ -52,6 +53,7 @@ class NewGame extends Phaser.Scene {
 
   create(startData) {
     if (gameState) {
+
       const map = this.make.tilemap({
         key: "test3"
       });
@@ -93,8 +95,8 @@ class NewGame extends Phaser.Scene {
         repeat: -1
       });
 
-      dude.body.fixedRotation = true;
 
+      dude.body.fixedRotation = true;
       this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
       this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
       this.cameras.main.startFollow(dude, true, 0.5, 0.5);
@@ -104,7 +106,9 @@ class NewGame extends Phaser.Scene {
       const addEnemies = (positionX, positionY, en) => {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
+
         this.physics.add.collider(enemies, aboveLayer);
+
 
         for (let y = 0; y < 1; y++) {
           for (let x = 0; x < 1; x++) {
@@ -118,6 +122,7 @@ class NewGame extends Phaser.Scene {
             targets: enemy
           });
           cos = Math.cos(30);
+
           enemy.setVelocity(40, 1);
           enemy.setBounce(1, 0.2);
 
@@ -157,6 +162,7 @@ class NewGame extends Phaser.Scene {
             loop: true,
             callback: this.launchTaiFighter
           })﻿
+
 
 
         });
