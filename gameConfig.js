@@ -21,7 +21,6 @@ const config = {
     },
     scene: [StartPlayer, NewGame],
         // type: [Erik, Charmaine]
-    
 }
 
 var cos = 0;
