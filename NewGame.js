@@ -10,7 +10,6 @@ class NewGame extends Phaser.Scene {
 
   preload() {
     this.load.crossOrigin = true;
-
     this.load.image("sky", "/assets/sky2.png");
     this.load.image("ground", "/assets/platform.png");
     this.load.image("star", "/assets/star.png");
@@ -30,7 +29,6 @@ class NewGame extends Phaser.Scene {
       // make map
       this.add.image(0, 0, "sky").setOrigin(0, 0);
       this.add.image(500, 400, "star");
-
       //make ground
       platforms = this.physics.add.staticGroup();
       platforms
@@ -56,17 +54,12 @@ class NewGame extends Phaser.Scene {
       platforms.create(1750, 220, "ground");
       platforms.create(2750, 320, "ground");
       platforms.create(3750, 220, "ground");
-
       // make player
       dude = this.physics.add.sprite(16, 284, "dude");
       dude.setBounce(0.4);
       dude.setCollideWorldBounds(true);
       this.physics.add.collider(dude, platforms);
-      
-      
-
       dude.body.fixedRotation = true;
-
       this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
       this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
       this.cameras.main.startFollow(dude, true, 0.5, 0.5);
@@ -79,8 +72,6 @@ class NewGame extends Phaser.Scene {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
         this.physics.add.collider(enemies, platforms);
-
-        
         // this.physics.add.collider(dude, enemies);
 
         for (let y = 0; y < 1; y++) {
@@ -106,8 +97,6 @@ class NewGame extends Phaser.Scene {
                 });
 
                 this.physics.add.collider(enemy, dude, function (singelEnemy) {
-
-                
                    singelEnemy.destroy();
                   // enemies.killAndHide(singelEnemy)
                   console.log(singelEnemy)
@@ -125,27 +114,6 @@ class NewGame extends Phaser.Scene {
       enemiestest(200, 400);
     }
 
-  //SCORE
-        // gameState.scoreText = this.add.text(30, 0, 'Score: 0', {
-        //   fontSize: '15px',
-        //   fill: '#000000'
-        // });
-        
-        // this.physics.add.collider(dude, enemies, function (singelEnemy) {
-          
-        // singelEnemy.ignoreDestroy = false;
-        // //  singelEnemy.destroy(singelEnsemy);
-        // singelEnemy.setActive(false).setVisible(false)
-        // dude.setActive(true).setVisible(true)
-        // // enemies.killAndHide(singelEnemy)
-        //   console.log(singelEnemy)
-        //   // Add your code below:
-
-        //   // if (dude.setBounce(0.4)){
-        //   gameState.score += 10;
-        //   gameState.scoreText.setText(`Score: ${gameState.score}`);
-        // })
-      // };
   }
 
 
