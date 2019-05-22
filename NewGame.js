@@ -154,7 +154,7 @@ class NewGame extends Phaser.Scene {
 
       cursors = this.input.keyboard.createCursorKeys();
       // create enemies
-      const addEnemies = (positionX, positionY, en) => {
+      const addEnemies = (positionX, positionY, en, scale) => {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
         this.physics.add.collider(enemies, aboveLayer, function(a, b) {
@@ -175,7 +175,7 @@ class NewGame extends Phaser.Scene {
 
         for (let y = 0; y < 1; y++) {
           for (let x = 0; x < 1; x++) {
-            enemies.create(positionX, positionY, en);
+            enemies.create(positionX, positionY, en).setScale(scale);
           }
         }
         enemies.x = 4000;
@@ -205,8 +205,8 @@ class NewGame extends Phaser.Scene {
         });
       };
 
-      addEnemies(736, 288, "enemies2");
-      addEnemies(400, 200, "enemies2");
+      addEnemies(736, 288, "enemies2", 2);
+      addEnemies(400, 200, "enemies2", 2);
       addEnemies(920, 248, "enemies");
       addEnemies(2000, 248, "enemies");
     }
