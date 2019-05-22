@@ -19,11 +19,14 @@ class NewGame extends Phaser.Scene {
 
   preload() {
     this.load.crossOrigin = true;
-    this.load.spritesheet("enemies", "./assets/dude.png", {
+
+    this.load.spritesheet("enemies", "./assets/bouncer.png", {
       frameWidth: 32,
       frameHeight: 48
     });
+
     this.load.spritesheet("enemies2", "./assets/erik3.png", {
+
       frameWidth: 32,
       frameHeight: 48
     });
@@ -46,6 +49,7 @@ class NewGame extends Phaser.Scene {
 
   create(startData) {
     if (gameState) {
+
       const map = this.make.tilemap({
         key: "test3"
       });
@@ -88,6 +92,7 @@ class NewGame extends Phaser.Scene {
         repeat: -1
       });
 
+<<<<<<< HEAD
       //enemy one movements
       this.anims.create({
         key: "enemies-left",
@@ -143,7 +148,10 @@ class NewGame extends Phaser.Scene {
       });
 
       dude.body.fixedRotation = true;
+=======
+>>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
 
+      dude.body.fixedRotation = true;
       this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
       this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
       this.cameras.main.startFollow(dude, true, 0.5, 0.5);
@@ -153,6 +161,7 @@ class NewGame extends Phaser.Scene {
       const addEnemies = (positionX, positionY, en) => {
         enemies = this.physics.add.group();
         enemies.enableBody = true;
+<<<<<<< HEAD
         this.physics.add.collider(enemies, aboveLayer, function(a, b) {
           // enemies.children.entries.map(enemy => {
           //   enemy.body.setCollideWorldBounds(true);
@@ -167,6 +176,11 @@ class NewGame extends Phaser.Scene {
               a.anims.play(`${en}-left`);
             }
         });
+=======
+
+        this.physics.add.collider(enemies, aboveLayer);
+>>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
+
 
         for (let y = 0; y < 1; y++) {
           for (let x = 0; x < 1; x++) {
@@ -180,6 +194,7 @@ class NewGame extends Phaser.Scene {
             targets: enemy
           });
           cos = Math.cos(30);
+
           enemy.setVelocity(40, 1);
           enemy.setBounce(1, 0.2);
           enemy.body.setCollideWorldBounds(true);
@@ -196,6 +211,37 @@ class NewGame extends Phaser.Scene {
             gameState.scoreText.setText(`Score: ${gameState.score}`);
           });
 
+<<<<<<< HEAD
+=======
+          this.anims.create({
+            key: 'taiLeft',
+            frames: this.anims.generateFrameNumbers(en, { start: 3, end: 0 }),
+            frameRate: 10,
+            repeat: 0
+          })
+          //center
+          this.anims.create({
+            key: 'taiCenter',
+            frames: this.anims.generateFrameNumbers(en, { start: 0, end: 4 }),
+            frameRate: 10,
+            repeat: 1
+          })
+          //right
+          this.anims.create({
+            key: 'taiRight',
+            frames: this.anims.generateFrameNumbers(en, { start: 5, end: 8 }),
+            frameRate: 10,
+            repeat: 0
+          })
+          this.time.addEvent({
+            delay: 1000,
+            loop: true,
+            callback: this.launchTaiFighter
+          })﻿
+
+
+
+>>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
         });
       };
 
@@ -204,7 +250,11 @@ class NewGame extends Phaser.Scene {
       addEnemies(920, 248, "enemies");
       addEnemies(2000, 248, "enemies");
     }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
   }
 
   update() {

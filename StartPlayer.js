@@ -29,7 +29,14 @@ class StartPlayer extends Phaser.Scene {
         fontSize: '40px'
     })
 
+<<<<<<< HEAD
+=======
+    
+
+
+>>>>>>> 4e8f2a49d5b6b043ac613387f0e52507e23549cf
     var playerErik = this.add.sprite(
+
         370,
         284,
         "erik",
@@ -64,6 +71,7 @@ class StartPlayer extends Phaser.Scene {
                 frame: 4
             }]
         });
+
     playerCharre.setScale(5)
     playerCharre.anims.play("front2")
 
@@ -84,6 +92,7 @@ class StartPlayer extends Phaser.Scene {
      })
      
     }
+
 
 }
 
