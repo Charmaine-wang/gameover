@@ -290,8 +290,8 @@ class NewGame extends Phaser.Scene {
       addEnemies(2000, 248, "enemies");
 
 
+      addCoins(400, 500, "coins");
       addCoins(736, 288, "coins");
-      addCoins(400, 200, "coins");
       addCoins(920, 248, "coins");
       addCoins(2000, 248, "coins");
     }
