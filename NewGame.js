@@ -22,6 +22,12 @@ class NewGame extends Phaser.Scene {
   preload() {
     this.load.crossOrigin = true;
 
+            this.load.image(
+              "house",
+              "/assets/house.png"
+            );
+            
+
     this.load.spritesheet("enemies", "./assets/bouncer.png", {
       frameWidth: 32,
       frameHeight: 48
@@ -55,6 +61,11 @@ class NewGame extends Phaser.Scene {
 
   create(startData) {
     if (gameState) {
+
+this.add
+  .image(0, -80, "house")
+  .setOrigin(0, 0);
+
       const map = this.make.tilemap({
         key: "test3"
       });
@@ -65,6 +76,8 @@ class NewGame extends Phaser.Scene {
       aboveLayer.setCollisionByProperty({
         collide: true
       });
+
+
       dude = this.physics.add.sprite(16, 284, "dude");
       dude.setBounce(0.4);
       dude.setCollideWorldBounds(true);
