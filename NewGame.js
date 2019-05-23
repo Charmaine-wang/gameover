@@ -298,7 +298,7 @@ class NewGame extends Phaser.Scene {
       addCoins(2000, 248, "coins");
     }
   }
-
+  
 
   update() {
     if (cursors.left.isDown) {
@@ -318,15 +318,26 @@ class NewGame extends Phaser.Scene {
       dude.setVelocityY(-330);
     }
 
-    console.log(enemieCount)
+      console.log(enemieCount);
+    
     if(enemieCount === 0 ) {
+      this.add.text(310, 80, "You Won", {
+        fill: "#000000",
+        fontSize: "40px"
+      });
       console.log("text");
-      this.scene.stop("NewGame");
-      this.scene.start('StartPlayer')
-      
+      setTimeout(
+         (a) => {
+          console.log(a)
+          this.scene.stop("NewGame"),
+          this.scene.start("StartPlayer")
+        },
+        3000
+        );
   }
     if(killPlayer) {
     killPlayer = false;
+    enemieCount = 0;
     this.scene.restart();
   }
   }
