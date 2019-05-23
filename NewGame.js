@@ -38,25 +38,25 @@ class NewGame extends Phaser.Scene {
       frameHeight: 48
     });
 
-    if (this.props.startData === 1) {
-      this.load.spritesheet("dude", "/assets/erik6.png", {
+
+      this.load.spritesheet("erik", "/assets/erik6.png", {
         frameWidth: 32,
         frameHeight: 48
       });
-    } else {
-      this.load.spritesheet("dude", "/assets/charre.png", {
-        frameWidth: 32,
-        frameHeight: 48
-      });
-    }
+
+     this.load.spritesheet("charre", "/assets/charre.png", {
+       frameWidth: 32,
+       frameHeight: 48
+     });
+           
 
     this.load.spritesheet("coins", "/assets/coin_spritesheet.png", {
       frameWidth: 22,
       frameHeight: 22
     });
 
-    this.load.image("sheet", "./assets/sheet2.png");
-    this.load.tilemapTiledJSON("test3", "/assets/test4.json");
+    this.load.image("sheet2", "./assets/warTileset_32x32.png");
+    this.load.tilemapTiledJSON("test3", "/assets/test5.json");
   }
 
   create(startData) {
@@ -69,7 +69,7 @@ this.add
       const map = this.make.tilemap({
         key: "test3"
       });
-      const tileset = map.addTilesetImage("sheet", "sheet");
+      const tileset = map.addTilesetImage("sheet2", "sheet2");
 
       const aboveLayer = map.createStaticLayer("layer", tileset, 0, 0);
 
@@ -77,16 +77,23 @@ this.add
         collide: true
       });
 
+    
+      this.character = startData.startData;
 
-      dude = this.physics.add.sprite(16, 284, "dude");
+      if (this.character === 1) {
+        dude = this.physics.add.sprite(16, 284, "erik");
+      } else {
+        dude = this.physics.add.sprite(16, 284, "charre");
+      }
+
       dude.setBounce(0.4);
       dude.setCollideWorldBounds(true);
       this.physics.add.collider(dude, aboveLayer);
 
       //player movements
       this.anims.create({
-        key: "left",
-        frames: this.anims.generateFrameNumbers("dude", {
+        key: `2-left`,
+        frames: this.anims.generateFrameNumbers("charre", {
           start: 0,
           end: 3
         }),
@@ -95,14 +102,39 @@ this.add
       });
 
       this.anims.create({
-        key: "turn",
-        frames: [{ key: "dude", frame: 4 }],
+        key: `2-turn`,
+        frames: [{ key: "charre", frame: 4 }],
         frameRate: 20
       });
 
       this.anims.create({
-        key: "right",
-        frames: this.anims.generateFrameNumbers("dude", {
+        key: `2-right`,
+        frames: this.anims.generateFrameNumbers("charre", {
+          start: 5,
+          end: 8
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+      this.anims.create({
+        key: `1}-left`,
+        frames: this.anims.generateFrameNumbers("erik", {
+          start: 0,
+          end: 3
+        }),
+        frameRate: 10,
+        repeat: -1
+      });
+
+      this.anims.create({
+        key: `1-turn`,
+        frames: [{ key: "erik", frame: 4 }],
+        frameRate: 20
+      });
+
+      this.anims.create({
+        key: `1-right`,
+        frames: this.anims.generateFrameNumbers("erik", {
           start: 5,
           end: 8
         }),
@@ -317,24 +349,26 @@ this.add
   update() {
     if (cursors.left.isDown) {
       dude.setVelocityX(-160);
-
-      dude.anims.play("left", true);
+      dude.anims.play(`${this.character}-left`, true);
+      
     } else if (cursors.right.isDown) {
       dude.setVelocityX(160);
 
-      dude.anims.play("right", true);
+      dude.anims.play(`${this.character}-right`, true);
     } else {
       dude.setVelocityX(0);
 
-      dude.anims.play("turn");
+      dude.anims.play(`${this.character}-turn`);
     }
     if (cursors.up.isDown && dude.body.blocked.down) {
       dude.setVelocityY(-330);
     }
 
-      console.log(enemieCount);
+      // console.log(this.props.startData);
+      // console.log(enemieCount);
     
     if(enemieCount === 0 ) {
+      
       this.add.text(310, 80, "You Won", {
         fill: "#000000",
         fontSize: "40px"
@@ -345,13 +379,15 @@ this.add
           console.log(a)
           this.scene.stop("NewGame"),
           this.scene.start("StartPlayer")
+          enemieCount = 0;
+          gameState.score = 0;
+          this.props.startData = 0;
         },
         3000
         );
   }
     if(killPlayer) {
     killPlayer = false;
-    enemieCount = 0;
     this.scene.restart();
   }
   }
