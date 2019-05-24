@@ -1,7 +1,7 @@
 const gameState = {
     score: 0,
     speed: 240,
-    width: 4125,
+    width: 4000,
     height: 640,
 }
 

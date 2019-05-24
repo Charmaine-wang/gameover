@@ -56,7 +56,7 @@ class NewGame extends Phaser.Scene {
     });
 
     this.load.image("sheet2", "./assets/warTileset_32x32.png");
-    this.load.tilemapTiledJSON("test3", "/assets/test5.json");
+    this.load.tilemapTiledJSON("test3", "/assets/test3.json");
   }
 
   create(startData) {
@@ -117,7 +117,7 @@ this.add
         repeat: -1
       });
       this.anims.create({
-        key: `1}-left`,
+        key: `1-left`,
         frames: this.anims.generateFrameNumbers("erik", {
           start: 0,
           end: 3
@@ -246,27 +246,38 @@ this.add
       //end of coins
 
       // create enemies
-      const addEnemies = (positionX, positionY, en, scale) => {
+      const addEnemies = (
+        positionX,
+        positionY,
+        enemyName,
+        scale,
+        points
+      ) => {
         enemieCount++;
         enemies = this.physics.add.group();
         enemies.enableBody = true;
-        this.physics.add.collider(enemies, aboveLayer, function(a, b) {
+        this.physics.add.collider(enemies, aboveLayer, function(
+          collision,
+          b
+        ) {
           // enemies.children.entries.map(enemy => {
           //   enemy.body.setCollideWorldBounds(true);
           //   console.log(enemy.body.touching.left);
           // })
 
-          if (a.body.blocked.left) {
-            a.anims.play(`${en}-right`);
+          if (collision.body.blocked.left) {
+            collision.anims.play(`${enemyName}-right`);
           }
-          if (a.body.blocked.right) {
-            a.anims.play(`${en}-left`);
+          if (collision.body.blocked.right) {
+            collision.anims.play(`${enemyName}-left`);
           }
         });
 
         for (let y = 0; y < 1; y++) {
           for (let x = 0; x < 1; x++) {
-            enemies.create(positionX, positionY, en).setScale(scale);
+            enemies
+              .create(positionX, positionY, enemyName)
+              .setScale(scale);
           }
         }
         // enemies.x = 4000;
@@ -287,7 +298,10 @@ this.add
           });
           gameState.scoreText.setScrollFactor(0);
 
-          this.physics.add.collider(enemy, dude, function(singelEnemy, b) {
+          this.physics.add.collider(enemy, dude, function(
+            singelEnemy,
+            b
+          ) {
             console.log(singelEnemy.body.touching);
             console.log(dude);
             if (
@@ -304,26 +318,7 @@ this.add
             gameState.scoreText.setText(`Score: ${gameState.score}`);
           });
 
-          this.anims.create({
-            key: "taiLeft",
-            frames: this.anims.generateFrameNumbers(en, { start: 3, end: 0 }),
-            frameRate: 10,
-            repeat: 0
-          });
-          //center
-          this.anims.create({
-            key: "taiCenter",
-            frames: this.anims.generateFrameNumbers(en, { start: 0, end: 4 }),
-            frameRate: 10,
-            repeat: 1
-          });
-          //right
-          this.anims.create({
-            key: "taiRight",
-            frames: this.anims.generateFrameNumbers(en, { start: 5, end: 8 }),
-            frameRate: 10,
-            repeat: 0
-          });
+        
           this.time.addEvent({
             delay: 1000,
             loop: true,
@@ -332,29 +327,30 @@ this.add
         });
       };
 
-      addEnemies(736, 288, "enemies2", 1.5);
-      // addEnemies(400, 200, "enemies2", 1.5);
-      // addEnemies(920, 248, "enemies");
-      // addEnemies(2000, 248, "enemies");
+      addEnemies(736, 288, "enemies2", 1.5, 10);
+      addEnemies(400, 200, "enemies2", 1.5);
+      addEnemies(920, 248, "enemies", 1, 10);
+      addEnemies(2000, 248, "enemies", 1, 15);
+      addEnemies(4000, 348, "enemies", 3, 20);
 
 
       addCoins(360, 500, "coins");
       addCoins(380, 500, "coins");
       addCoins(400, 500, "coins");
-      
+
       addCoins(736, 288, "coins");
 
       addCoins(715, 500, "coins");
       addCoins(750, 500, "coins");
       addCoins(785, 500, "coins");
-     
+
       addCoins(910, 248, "coins");
       addCoins(950, 248, "coins");
       addCoins(970, 248, "coins");
       addCoins(990, 248, "coins");
       addCoins(1010, 248, "coins");
       addCoins(1040, 248, "coins");
-      
+
       addCoins(2000, 248, "coins");
     }
   }
@@ -378,7 +374,7 @@ this.add
       dude.setVelocityY(-330);
     }
 
-      // console.log(this.props.startData);
+      // console.log(this.props.startData); 
       // console.log(enemieCount);
     
     if(enemieCount === 0 ) {
@@ -402,8 +398,6 @@ this.add
   }
     if(killPlayer) {
     killPlayer = false;
-    enemieCount = 0;
-    
     this.scene.restart();
   }
   }
