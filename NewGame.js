@@ -24,7 +24,7 @@ class NewGame extends Phaser.Scene {
 
             this.load.image(
               "house",
-              "/assets/house.png"
+              "/assets/andralang.png"
             );
             
 
@@ -306,9 +306,23 @@ this.add
       // addEnemies(2000, 248, "enemies");
 
 
+      addCoins(360, 500, "coins");
+      addCoins(380, 500, "coins");
       addCoins(400, 500, "coins");
+      
       addCoins(736, 288, "coins");
-      addCoins(920, 248, "coins");
+
+      addCoins(715, 500, "coins");
+      addCoins(750, 500, "coins");
+      addCoins(785, 500, "coins");
+     
+      addCoins(910, 248, "coins");
+      addCoins(950, 248, "coins");
+      addCoins(970, 248, "coins");
+      addCoins(990, 248, "coins");
+      addCoins(1010, 248, "coins");
+      addCoins(1040, 248, "coins");
+      
       addCoins(2000, 248, "coins");
     }
   }
@@ -352,6 +366,7 @@ this.add
     if(killPlayer) {
     killPlayer = false;
     enemieCount = 0;
+    
     this.scene.restart();
   }
   }
