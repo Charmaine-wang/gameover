@@ -399,6 +399,8 @@ this.add
     if(killPlayer) {
     killPlayer = false;
     this.scene.restart();
+    enemieCount = 0;
+          gameState.score = 0;
   }
   }
 }
