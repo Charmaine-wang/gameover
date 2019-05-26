@@ -216,12 +216,9 @@ this.add
       cursors = this.input.keyboard.createCursorKeys();
 
       //create coins
-
       const addCoins = (positionX, positionY, coin) => {
         coins = this.physics.add.group();
         coins.enableBody = true;
-
-        // coins.anims.play("coin")
 
         this.physics.add.collider(coins, aboveLayer);
         for (let y = 0; y < 1; y++) {
@@ -260,10 +257,6 @@ this.add
           collision,
           b
         ) {
-          // enemies.children.entries.map(enemy => {
-          //   enemy.body.setCollideWorldBounds(true);
-          //   console.log(enemy.body.touching.left);
-          // })
 
           if (collision.body.blocked.left) {
             collision.anims.play(`${enemyName}-right`);
@@ -280,8 +273,7 @@ this.add
               .setScale(scale);
           }
         }
-        // enemies.x = 4000;
-        // enemies.y = 2050;
+
         enemies.children.entries.map(enemy => {
           this.tweens.add({
             targets: enemy
@@ -331,18 +323,28 @@ this.add
       addEnemies(400, 200, "enemies2", 1.5);
       addEnemies(920, 248, "enemies", 1, 10);
       addEnemies(2000, 248, "enemies", 1, 15);
+      addEnemies(2600, 500, "enemies", 1, 15);
+      addEnemies(3300, 100, "enemies", 1, 15);
       addEnemies(4000, 348, "enemies", 3, 20);
 
 
-      addCoins(360, 500, "coins");
-      addCoins(380, 500, "coins");
+      addCoins(300, 500, "coins");
+
+      addCoins(300, 600, "coins");
+      addCoins(320, 600, "coins");
+      addCoins(340, 600, "coins");
+      addCoins(360, 600, "coins");
       addCoins(400, 500, "coins");
 
-      addCoins(736, 288, "coins");
+     
 
       addCoins(715, 500, "coins");
       addCoins(750, 500, "coins");
       addCoins(785, 500, "coins");
+
+      addCoins(875, 500, "coins");
+      addCoins(915, 500, "coins");
+      addCoins(945, 500, "coins");
 
       addCoins(910, 248, "coins");
       addCoins(950, 248, "coins");
@@ -351,7 +353,109 @@ this.add
       addCoins(1010, 248, "coins");
       addCoins(1040, 248, "coins");
 
+      addCoins(1295, 500, "coins");
+      addCoins(1225, 500, "coins");
+      addCoins(1260, 500, "coins");
+
+      addCoins(1395, 500, "coins");
+      addCoins(1425, 500, "coins");
+      addCoins(1460, 500, "coins");
+
+      addCoins(1490, 500, "coins");
+      addCoins(1520, 500, "coins");
+      addCoins(1550, 500, "coins");
+      addCoins(1580, 500, "coins");
+      addCoins(1610, 500, "coins");
+      addCoins(1640, 500, "coins");
+
+      // addCoins(1570, 200, "coins");
+      addCoins(1590, 200, "coins");
+      addCoins(1620, 200, "coins");
+      addCoins(1650, 200, "coins");
+      addCoins(1680, 200, "coins");
+      addCoins(1710, 200, "coins");
+      addCoins(1740, 200, "coins");
+      addCoins(1770, 200, "coins");
+      addCoins(1800, 200, "coins");
+      // addCoins(1830, 200, "coins");
+      // addCoins(1860, 200, "coins");
+      // addCoins(1890, 200, "coins");
+
       addCoins(2000, 248, "coins");
+
+      addCoins(2160, 200, "coins");
+      addCoins(2190, 200, "coins");
+      addCoins(2220, 200, "coins");
+
+      addCoins(2350, 200, "coins");
+      addCoins(2380, 200, "coins");
+      addCoins(2410, 200, "coins");
+
+      // addCoins(2300, 400, "coins");
+      addCoins(2320, 400, "coins");
+      addCoins(2350, 400, "coins");
+      addCoins(2380, 400, "coins");
+      addCoins(2410, 400, "coins");
+      addCoins(2440, 350, "coins");
+
+
+       addCoins(2550, 200, "coins");
+       addCoins(2580, 200, "coins");
+       addCoins(2610, 200, "coins");
+       addCoins(2640, 200, "coins");
+
+      addCoins(2610, 300, "coins");
+      addCoins(2640, 300, "coins");
+      addCoins(2670, 300, "coins");
+      addCoins(2700, 350, "coins");
+
+
+       addCoins(2770, 100, "coins");
+       addCoins(2800, 100, "coins");
+       addCoins(2830, 100, "coins");
+       addCoins(2860, 100, "coins");
+       addCoins(2890, 100, "coins");
+       addCoins(2920, 100, "coins");
+       addCoins(2950, 100, "coins");
+       addCoins(2980, 100, "coins");
+
+       addCoins(2830, 200, "coins");
+       addCoins(2860, 200, "coins");
+       addCoins(2890, 200, "coins");
+       addCoins(2920, 200, "coins");
+       addCoins(2950, 200, "coins");
+
+       addCoins(2930, 600, "coins");
+       addCoins(2960, 600, "coins");
+       addCoins(2990, 600, "coins");
+
+      //  addCoins(3200, 600, "coins");
+      //  addCoins(3230, 600, "coins");
+
+       addCoins(3150, 500, "coins");
+       addCoins(3180, 500, "coins");
+
+       addCoins(3340, 500, "coins");
+       addCoins(3370, 550, "coins");
+
+       addCoins(3380, 100, "coins");
+
+       addCoins(3440, 200, "coins");
+
+       addCoins(3700, 50, "coins");
+       addCoins(3730, 50, "coins");
+       addCoins(3760, 50, "coins");
+
+       addCoins(3730, 200, "coins");
+       addCoins(3760, 200, "coins");
+       addCoins(3790, 200, "coins");
+
+       addCoins(3820, 100, "coins");
+       addCoins(3850, 100, "coins");
+       addCoins(3880, 100, "coins");
+        addCoins(4100, 100, "coins"); 
+        addCoins(4130, 100, "coins");
+       
     }
   }
   

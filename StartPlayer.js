@@ -12,7 +12,7 @@ class StartPlayer extends Phaser.Scene {
 
     preload(){
     
-    this.load.spritesheet("erik", "/assets/erik3.png", {
+    this.load.spritesheet("erik", "/assets/erik6.png", {
     frameWidth: 32,
     frameHeight: 48
     });
