@@ -34,6 +34,7 @@ you can also play the game using this link https://2lang.netlify.com/
 - Remember to remove the files you don't use. For example: "erik.png" images and the "test.json" maps in the "assets" folder.
  - Code left commented out - __NewGame.js:(371, 380, 381, 382, 394, 432, 433)__ [HERE](https://github.com/Charmaine-wang/gameover/blob/f25a14d8a9e0f82f4e242b4850d36ad537c6364d/NewGame.js#L371)
  - Code left commented out - __NewGame.js:(481, 482, 513, 514, 515, 516, 517)__ [HERE](https://github.com/Charmaine-wang/gameover/blob/f25a14d8a9e0f82f4e242b4850d36ad537c6364d/NewGame.js#L481)
+ - addCoins function being called on 98 times indicates that there's most likely a better solution available to the problem
 
 ### License
 [Code License: MIT](https://choosealicense.com/licenses/mit/)
