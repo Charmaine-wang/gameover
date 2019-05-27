@@ -17,6 +17,6 @@ To play the game you have to clone the project and start a php server using hype
 you can also play the game using this link https://2lang.netlify.com/
 
 ### Pull Request Log
-- [Main game]https://github.com/Charmaine-wang/gameover/pull/1)
+- [Main game](https://github.com/Charmaine-wang/gameover/pull/1)
 - [text when you win](https://github.com/Charmaine-wang/gameover/pull/2)
 - [Create README.md](https://github.com/Charmaine-wang/gameover/pull/3)
