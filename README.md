@@ -1,5 +1,5 @@
-# gameover
-school project
+# Andra Lang
+school game project
 
 
 ### Collaborators
