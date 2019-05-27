@@ -484,8 +484,8 @@ this.add
     if(enemieCount === 0 ) {
       
       let win = this.add.text(310, 80, "You Won", {
-        fill: "#dcfd00",
-        fontSize: "40px"
+        fill: "##FA58F4",
+        fontSize: "70px"
       });
       win.setScrollFactor(0);
       console.log("text");
