@@ -26,4 +26,5 @@ you can also play the game using this link https://2lang.netlify.com/
 - [Create README.md](https://github.com/Charmaine-wang/gameover/pull/3)
 
 
+### License
 [Code License: MIT](https://choosealicense.com/licenses/mit/)
