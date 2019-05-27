@@ -37,3 +37,6 @@ you can also play the game using this link https://2lang.netlify.com/
 
 ### License
 [Code License: MIT](https://choosealicense.com/licenses/mit/)
+
+### review classmates projects
+- [GameOver](https://github.com/eliasjohansson/GameOver/pull/54)
