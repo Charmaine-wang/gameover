@@ -9,6 +9,9 @@ school project
 ### Testers
 - Max Smidje
 - Gordon Wang
+- Chantal Jensen
+- Cecilia Wetterstrand
+- Emma Åkerqvist
 - Rebecca Klaening
 - Lovisa Hallgren
 
